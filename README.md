@@ -22,6 +22,12 @@ Het grootste probleem waar ik verwacht tegen aan te lopen is het draaien van de 
 ## In andere applicaties
 Op een niveau lijkt de applicatie op de navigatiefeature van google maps zelf. Deze geeft bijvoorbeeld een melding wanneer de gebruiker een afslag moet nemen op de snelweg. Dit is vanzelfsprekend ook op de GPS locatie gebasseerd van de gebruikernet zoals de bedoeling is in deze applicatie. Wanneer de applicatie op de achtergrond draait krijgt de gebruiker een push notificatie met een korte beschrijving van de actie die moet worden ondernomen. Als er vervolgens op deze notificatie word geklikt opent de applicatie de map waarop de route en meer informatie word weergegeven. Iets vergelijkbaars wil ik ook implementeren in de applicatie wanneer de gebruiker in de buurt komt van een locatie waar een herinnering aan vast zit.
 
+## Minimum viable product
+* Registreren en inloggen
+* Herinnering toevoegen,aanpassen en verwijderen
+* Melding ontvangen op de juiste locatie
+* Herinneringen op de map kunnen zien
+
 
 
 
