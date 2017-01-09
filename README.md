@@ -9,7 +9,8 @@ Voor dit probleem wil ik dus een applicatie ontwikkelen die gebruikers aan bepaa
 
 ## Applicatie onderdelen
 De applicatie zal vooral bestaan uit 4 verschillende schermen. Een hoofdactiviteit waar de gebruiker zijn lijst met herinerringen kan zien. Een activiteit met een formulier waar de gebruiker een nieuwe herinnering kan toevoegen of een bestaande kan aanpassen. En een activiteit waar een kaart op word weergegeven zodat een gebruiker daar ook een herinnering op kan zien door middel van een landmark mits dichtbij genoeg om deze te kunnen zien staan. Als laatste is er een scherm waar de herinerring word weergegeven. De gebruiker komt vanzelf op dit scherm wanneer de app is geopend en op de locatie van een herinnering komt of wanneer de gebruiker op een melding klikt als deze binnenkomt wanneer de applicatie op de achtergrond draait.
-
+![](doc/lijst.png)
+![](doc/kaart.png)
 ![](doc/add.png)
 
 ## Benodigde API's en tools
