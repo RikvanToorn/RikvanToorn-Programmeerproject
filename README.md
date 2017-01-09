@@ -13,5 +13,12 @@ De applicatie zal vooral bestaan uit 4 verschillende schermen. Een hoofdactivite
 ## Benodigde API's en tools
 Ik zal hoogstwaarschijnlijk gebruik maken van de firebase tool om zo gebruikers de mogelijkheid te geven zich te registreren en in te loggen in de applicatie. Ook zal er dan gebruik worden gemaakt van de database feature om per gebruiker de herinneringen op te slaan. Daarnaast zal ik gebruik maken van een map API en dan waarschijnlijk die van google gezien deze het meest word gebruikt en daarom ook een uitgebreide documentatie beschikbaar heeft. 
 
-Het grootste probleem waar ik verwacht tegen aan te lopen is het draaien van de applicatie op de achtergrond. Hier heb ik nog nooit mee gewerkt en weet ook niet hoe ik dit moet implementeren. Op internet staan gelukkig genoeg tutorials en documentatie om dit probleem op te lossen en succesvol uit te voeren. 
+Het grootste probleem waar ik verwacht tegen aan te lopen is het draaien van de applicatie op de achtergrond. Hier heb ik nog nooit mee gewerkt en weet ook niet hoe ik dit moet implementeren. Op internet staan gelukkig genoeg tutorials en documentatie om dit probleem op te lossen en succesvol uit te voeren. Ook zal het lastig worden de meldingen op het goede moment te laten verschijnen omdat de gps locatie moet worden gekoppeld aan de google maps API door gebruik van de latitude en longtitude.
+
+## In andere applicaties
+Op een niveau lijkt de applicatie op de navigatiefeature van google maps zelf. Deze geeft bijvoorbeeld een melding wanneer de gebruiker een afslag moet nemen op de snelweg. Dit is vanzelfsprekend ook op de GPS locatie gebasseerd van de gebruikernet zoals de bedoeling is in deze applicatie. Wanneer de applicatie op de achtergrond draait krijgt de gebruiker een push notificatie met een korte beschrijving van de actie die moet worden ondernomen. Als er vervolgens op deze notificatie word geklikt opent de applicatie de map waarop de route en meer informatie word weergegeven. Iets vergelijkbaars wil ik ook implementeren in de applicatie wanneer de gebruiker in de buurt komt van een locatie waar een herinnering aan vast zit.
+
+
+
+
 
