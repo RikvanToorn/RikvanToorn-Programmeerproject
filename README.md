@@ -38,3 +38,9 @@ Op een niveau lijkt de applicatie op de navigatie feature
  van google maps zelf. Deze geeft bijvoorbeeld een melding wanneer de gebruiker een afslag moet nemen op de snelweg. Dit is vanzelfsprekend ook op de GPS locatie gebaseerd van de gebruiker net zoals de bedoeling is in deze applicatie. Wanneer de applicatie
  op de achtergrond draait krijgt de gebruiker een push notificatie met een korte beschrijving van de actie die moet worden ondernomen. Als er vervolgens op deze notificatie wordt geklikt opent de applicatie de map waarop de route en meer informatie wordt weergegeven.
  Iets vergelijkbaars wil ik ook implementeren in de applicatie wanneer de gebruiker in de buurt komt van een locatie waar een herinnering aan vast zit.
+
+## Minimum viable product
+ + Registreren en inloggen
+ + Herinnering toevoegen,aanpassen en verwijderen
+ + Melding ontvangen op de juiste locatie
+ + Herinneringen op de map kunnen zien
