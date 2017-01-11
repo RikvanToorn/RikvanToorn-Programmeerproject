@@ -35,12 +35,12 @@ Bij elke activity Moet er de asynctask GpsReminderActivity op de achtergrond uit
  
 
 
-API’s and frameworks:
+##API’s and frameworks:
 *	Firebase platform
 *	Google Maps Android API
 *	Google Places API for Android
 
-Lijst van firebase tabellen
+##Lijst van firebase tabellen
 +	Gebruikers ID
  +	E-mail
  +	Naam
