@@ -25,6 +25,11 @@ De gebruiker komt op dit scherm wanneer hij of zei een reminder wilt toevoegen o
 
 ![](doc/ReminderAddActivity.png)
 
+##ReminderActivity
+Wanneer de gebruiker volgens de GPS locatie in de radius van een reminder komt zal deze activity in beeld komen. Ook word deze activity gestart wanneer de gebruiker op een push notificatie klikt wanneer de app niet op de voorgrond draait. Hier kan de gebruiker ervoor kiezen de reminder te voltooien, te verwijderen of te bewerken. Aan de hand van wat de gebruiker kiest zal de database worden geupdate. vanaf hier kan de gebruiker ook weer gebruik maken van het menu om om te schakelen naar de andere activities.
+
+![](doc/ReminderActivity.png)
+
 ##GpsReminderActivity – Asynctask
 Bij elke activity Moet er de asynctask GpsReminderActivity op de achtergrond uitgevoerd worden ten alle tijden. Ook moet deze activity zijn werk doen wanneer de app op de achtergrond draait en zelfs wanneer de applicatie volledig is afgesloten. Deze activity kijkt naar de GPS locatie van de telefoon en kijkt of deze in de radius is van 1 van de locaties van de reminders die door de gebruikers zijn ingevoerd. Wanneer dit het geval is zal er een melding worden gestuurd naar de activity die op dat moment is geopend. Als de applicatie niet is geopend zal de activity een push notificatie sturen. 
  
