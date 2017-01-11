@@ -32,12 +32,12 @@ Lijst van firebase tabellen
  +	E-mail
  +	Naam
  +	Reminders
-  +	ID
-  +	Titel
-  +	Locatie 
-  +	Beschrijving
-  +	Prioriteit
-  +	Melding trigger 
+   +	ID
+   +	Titel
+   +	Locatie 
+   +	Beschrijving
+   +	Prioriteit
+   +	Melding trigger 
 
 
 De database feature van firebase heeft geen standaard tabellen zoals een SQl database maar maakt gebruik van een boomstructuur. Zodra er een nieuwe gebruiker zich registreert word er een nieuwe tak toegevoegd met een e-mail en naam onder een uniek gebruikers ID. zodra deze nieuwe gebruiker een herinnering toevoegt word de tak ‘reminders’ toegevoegd met alle subtakken die de informatie bevatten.
