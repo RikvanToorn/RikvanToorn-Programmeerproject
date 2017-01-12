@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">GpsReminder</string>
+    <string name="user_login_title">User Login</string>
+    <string name="user_login_email_hint">Enter your email</string>
+    <string name="user_login_password_hint">Enter your password</string>
+    <string name="login_button_text">Login</string>
+    <string name="login_no_account_text">Don\'t have an acccount? Register here</string>
+    <string name="user_registration_title">User registation</string>
+    <string name="user_registration_email_hint">Enter your email</string>
+    <string name="user_registration_password_hint">Enter your password</string>
+    <string name="registration_button_text">Register</string>
+    <string name="registration_already_account_text">Already registered? Sign in here</string>
+    <string name="menu_button_my_reminders">My Reminders</string>
+    <string name="menu_button_map">Map</string>
+    <string name="menu_button_reminder">Reminder</string>
+    <string name="reminder_delete_button_text">Delete</string>
+    <string name="reminder_complete_button_text">Complete</string>
+    <string name="reminder_edit_button_text">Edit</string>
+    <string name="reminder_title_hint">Title</string>
+    <string name="reminder_location_hint">Location</string>
+    <string name="reminder_add_title">New Reminder</string>
+    <string name="add_reminder_add_button_text">Add</string>
+    <string name="add_reminder_cancel_button_text">Cancel</string>
+    <string name="add_reminder_urgency_text">Urgency:</string>
+    <string name="add_reminder_description_text">Description</string>
+    <string name="add_reminder_distance">0KM</string>
+    <string name="add_reminder_distance_text">Distance:</string>
+    <string name="add_reminder_entering_location_text">Entering Location</string>
+    <string name="add_reminder_leaving_location_text">Leaving location</string>
+    <string name="add_reminder_notification_text">Notification when:</string>
+</resources>

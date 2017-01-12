@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reminder_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rikvantoorn.gpsreminder.ReminderListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonToReminderList"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_my_reminders"/>
+            <Button
+                android:id="@+id/buttonToMap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_map"/>
+            <Button
+                android:id="@+id/buttonToReminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_reminder"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listViewReminders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/buttonAddReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/add_reminder_add_button_text"/>
+    </RelativeLayout>
+
+</RelativeLayout>

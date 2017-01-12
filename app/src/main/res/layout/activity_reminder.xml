@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reminder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rikvantoorn.gpsreminder.ReminderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <Button
+                android:id="@+id/buttonToReminderList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_my_reminders"/>
+            <Button
+                android:id="@+id/buttonToMap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_map"/>
+            <Button
+                android:id="@+id/buttonToReminder"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_reminder" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewReminderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:text="Title of reminder"/>
+
+        <TextView
+            android:id="@+id/textViewReminderLocatie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Location and distance"/>
+
+        <TextView
+            android:id="@+id/textViewReminderInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:text="All the extra information about the this reminder the user wants to add"/>
+
+        <TextView
+            android:id="@+id/textViewurgency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Urgency:"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_gravity="center"
+            android:numStars="5"
+            android:elevation="1dp"
+            android:rating="2.5" />
+
+        <TextView
+            android:id="@+id/textViewReminderNotificationWhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Notification when:"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBoxEnteringLocation"
+                        android:checked="true" />
+
+                    <TextView
+                        android:id="@+id/textViewEnteringLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16sp"
+                        android:text="Entering Location"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/checkBoxLeavinglocation" />
+
+                    <TextView
+                        android:id="@+id/textViewLeavinglocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16sp"
+                        android:text="Leaving location"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:id="@+id/buttonReminderDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/reminder_delete_button_text"/>
+            <Button
+                android:id="@+id/buttonReminderComplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/reminder_complete_button_text"/>
+            <Button
+                android:id="@+id/buttonReminderEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/reminder_edit_button_text"/>
+        </LinearLayout>
+
+</RelativeLayout>

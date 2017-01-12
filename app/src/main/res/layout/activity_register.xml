@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.rikvantoorn.gpsreminder.RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewRegistration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/user_registration_title"/>
+
+        <EditText
+            android:id="@+id/editTextEmailRegistration"
+            android:layout_margin="15dp"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/user_registration_email_hint"/>
+
+        <EditText
+            android:id="@+id/editTextPasswordRegistration"
+            android:inputType="textPassword"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/user_registration_password_hint"/>
+
+        <Button
+            android:id="@+id/buttonRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registration_button_text"/>
+
+        <TextView
+            android:id="@+id/textViewToLogin"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/registration_already_account_text"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

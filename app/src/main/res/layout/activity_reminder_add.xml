@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_reminder_add"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.rikvantoorn.gpsreminder.ReminderAddActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <Button
+                android:id="@+id/buttonToReminderList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_my_reminders"/>
+            <Button
+                android:id="@+id/buttonToMap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_map"/>
+            <Button
+                android:id="@+id/buttonToReminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_reminder" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextReminderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:hint="@string/reminder_title_hint"/>
+
+        <EditText
+            android:id="@+id/editTextReminderLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:hint="@string/reminder_location_hint"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="@string/add_reminder_distance_text"/>
+
+        <SeekBar
+            android:id="@+id/seekBarDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:max="100"/>
+
+        <TextView
+            android:id="@+id/textViewDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/add_reminder_distance"/>
+
+        <EditText
+            android:id="@+id/editTextReminderDescription"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textSize="14sp"
+            android:gravity="top|start"
+            android:background="@color/common_google_signin_btn_text_light_disabled"
+            android:hint="@string/add_reminder_description_text"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:id="@+id/textViewurgency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@string/add_reminder_urgency_text"/>
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:id="@+id/ratingBar"
+                android:layout_marginStart="10dp"
+                android:numStars="5"
+                android:rating="2.5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewReminderNotificationWhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/add_reminder_notification_text"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBoxEnteringLocation" />
+
+                <TextView
+                    android:id="@+id/textViewEnteringLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="14sp"
+                    android:text="@string/add_reminder_entering_location_text"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkBoxLeavinglocation" />
+
+                <TextView
+                    android:id="@+id/textViewLeavinglocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textSize="14sp"
+                    android:text="@string/add_reminder_leaving_location_text"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/buttonAddReminderCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_reminder_cancel_button_text"/>
+
+        <Button
+            android:id="@+id/buttonAddReminderAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/add_reminder_add_button_text"/>
+    </RelativeLayout>
+
+</RelativeLayout>
