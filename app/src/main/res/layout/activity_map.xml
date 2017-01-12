@@ -8,30 +8,51 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonToReminderList"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:text="@string/menu_button_my_reminders"/>
-        <Button
-            android:id="@+id/buttonToMap"
-            android:background="@color/common_google_signin_btn_text_dark_pressed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:text="@string/menu_button_map"/>
-        <Button
-            android:id="@+id/buttonToReminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.33"
-            android:text="@string/menu_button_reminder" />
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonToReminderList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:textSize="12sp"
+                android:text="@string/menu_button_my_reminders"/>
+            <Button
+                android:id="@+id/buttonToMap"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_map"/>
+            <Button
+                android:id="@+id/buttonToReminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.33"
+                android:text="@string/menu_button_reminder"/>
+
+        </LinearLayout>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.example.rikvantoorn.gpsreminder.MapActivity" />
 
     </LinearLayout>
 
 </RelativeLayout>
+
+
+
+

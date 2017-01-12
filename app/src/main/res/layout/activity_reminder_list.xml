@@ -14,8 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
 
             <Button
                 android:id="@+id/buttonToReminderList"
@@ -23,6 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
+                android:textSize="12sp"
                 android:text="@string/menu_button_my_reminders"/>
             <Button
                 android:id="@+id/buttonToMap"

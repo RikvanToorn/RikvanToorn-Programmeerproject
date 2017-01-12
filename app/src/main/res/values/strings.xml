@@ -28,4 +28,5 @@
     <string name="add_reminder_entering_location_text">Entering Location</string>
     <string name="add_reminder_leaving_location_text">Leaving location</string>
     <string name="add_reminder_notification_text">Notification when:</string>
+    <string name="title_activity_map">Map</string>
 </resources>
