@@ -23,7 +23,7 @@
     <string name="add_reminder_cancel_button_text">Cancel</string>
     <string name="add_reminder_urgency_text">Urgency:</string>
     <string name="add_reminder_description_text">Description</string>
-    <string name="add_reminder_distance">0KM</string>
+    <string name="add_reminder_distance">0M</string>
     <string name="add_reminder_distance_text">Distance:</string>
     <string name="add_reminder_entering_location_text">Entering Location</string>
     <string name="add_reminder_leaving_location_text">Leaving location</string>
