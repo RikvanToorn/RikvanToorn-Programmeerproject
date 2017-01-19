@@ -73,24 +73,6 @@
             android:textSize="16sp"
             android:text="All the extra information about the this reminder the user wants to add"/>
 
-        <TextView
-            android:id="@+id/textViewurgency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Urgency:"/>
-
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            android:layout_gravity="center"
-            android:numStars="5"
-            android:elevation="1dp"
-            android:rating="2.5" />
 
         <TextView
             android:id="@+id/textViewReminderNotificationWhen"
@@ -118,8 +100,8 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/checkBoxEnteringLocation"
-                        android:checked="true" />
+                        android:clickable="false"
+                        android:id="@+id/checkBoxEnteringLocation" />
 
                     <TextView
                         android:id="@+id/textViewEnteringLocation"
@@ -139,6 +121,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
                         android:id="@+id/checkBoxLeavinglocation" />
 
                     <TextView

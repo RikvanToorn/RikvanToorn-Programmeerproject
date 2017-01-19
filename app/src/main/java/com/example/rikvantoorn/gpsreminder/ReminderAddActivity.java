@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,8 +37,15 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
     private Reminder reminder;
 
     private LatLng latlng;
-    private String location;
+
+    private String activity;
     private String date;
+    private String location;
+    private String description;
+    private String title;
+
+    private double coordinateslatitude;
+    private double coordinateslongitude;
 
     private int whenwarning;
     private int distance;
@@ -63,6 +71,18 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_add);
+
+        Bundle extras = getIntent().getExtras();
+        activity = extras.getString("activity");
+        date = extras.getString("date");
+        title = extras.getString("title");
+        description = extras.getString("description");
+        location = extras.getString("location");
+        distance = extras.getInt("distance");
+        whenwarning = extras.getInt("whenwarning");
+        coordinateslatitude = extras.getDouble("coordinateslatitude");
+        coordinateslongitude = extras.getDouble("coordinateslongitude");
+
 
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
@@ -104,7 +124,28 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-        ((EditText)autocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input)).setHint("Location");
+
+
+        if (activity.equals("ReminderActivity")) {
+            editTextReminderTitle.setText(title);
+            editTextReminderDescription.setText(description);
+            textViewDistance.setText(distance + "m");
+            seekBarDistance.setProgress(distance);
+            buttonAddReminderAdd.setText("Edit");
+            ((EditText)autocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input)).setHint(location);
+            latlng = new LatLng(coordinateslatitude, coordinateslongitude);
+            Log.d("ja", "jaja" + latlng);
+            if (whenwarning == 1) {
+                checkBoxEnteringLocation.setChecked(true);
+            }
+            if (whenwarning == 2) {
+                checkBoxLeavingLocation.setChecked(true);
+            }
+            if (whenwarning == 3) {
+                checkBoxEnteringLocation.setChecked(true);
+                checkBoxLeavingLocation.setChecked(true);
+            }
+        }
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
@@ -174,6 +215,8 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
 
         DatabaseReference childRef = databaseReference.child("Reminders").child(title);
         childRef.setValue(reminder);
+
+        startActivity(new Intent(getApplicationContext(), ReminderListActivity.class));
     }
 
 

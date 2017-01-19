@@ -17,7 +17,7 @@ public class Reminder {
     public LatLng coordinates;
 
 
-    public Reminder(String title, String location, String description, String date, int distance,  LatLng coordinates, int whenwarning) {
+    public Reminder(String title, String location, String description, String date, Integer distance,  LatLng coordinates, Integer whenwarning) {
         this.title = title;
         this.location = location;
         this.description = description;
