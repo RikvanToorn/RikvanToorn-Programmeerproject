@@ -15,37 +15,20 @@
         <TextView
             android:id="@+id/dateTextViewRow"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:layout_height="wrap_content"
             android:text="17 jan. 2017 18:56:47"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textStyle="italic"/>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5">
 
             <TextView
                 android:id="@+id/locationTextViewRow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textSize="16sp"
+                android:layout_weight="0.6"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="Marshalllaan 292"/>
-
-            <TextView
-                android:id="@+id/distanceTextViewRow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:paddingLeft="10dp"
-                android:textSize="14sp"
-                android:text="- 300m"/>
-
-
-        </LinearLayout>
 
     </LinearLayout>
 

@@ -190,22 +190,18 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             TextView locationTextViewRow;
             TextView titleTextViewRow;
             TextView descriptionTextViewRow;
-            TextView distanceTextViewRow;
 
 
             dateTextViewRow = (TextView) convertView.findViewById(R.id.dateTextViewRow);
             locationTextViewRow = (TextView) convertView.findViewById(R.id.locationTextViewRow);
             titleTextViewRow = (TextView) convertView.findViewById(R.id.titleTextViewRow);
             descriptionTextViewRow = (TextView) convertView.findViewById(R.id.descriptionTextViewRow);
-            distanceTextViewRow = (TextView) convertView.findViewById(R.id.distanceTextViewRow);
 
 
             dateTextViewRow.setText(ReminderList.get(position).getdate());
-            locationTextViewRow.setText(ReminderList.get(position).getlocation());
+            locationTextViewRow.setText(ReminderList.get(position).getlocation() + " - " + ReminderList.get(position).getdistance() + "m");
             titleTextViewRow.setText(ReminderList.get(position).gettitle());
             descriptionTextViewRow.setText(ReminderList.get(position).getdescription());
-            distanceTextViewRow.setText("- " + ReminderList.get(position).getdistance() + "m");
-
 
 
             return convertView;
