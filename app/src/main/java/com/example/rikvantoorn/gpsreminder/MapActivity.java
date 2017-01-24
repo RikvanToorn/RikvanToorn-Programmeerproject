@@ -35,6 +35,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private LocationManager manager;
     private LocationListener listener;
 
+    private float[] results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         buttonToReminder.setOnClickListener(this);
 
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        results = new float[3];
+
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Toast.makeText(MapActivity.this, "latitude = " + location.getLatitude(), Toast.LENGTH_SHORT).show();
+                Location.distanceBetween(location.getLatitude(), location.getLongitude(), 52.352705099999994, 4.9486612, results);
+                Toast.makeText(MapActivity.this, results[0] + " " + results[1] + " " + results[2] + " meters", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -68,7 +74,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             @Override
             public void onProviderEnabled(String provider) {
-
+                Toast.makeText(MapActivity.this, provider, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -80,7 +86,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
+
 
                 requestPermissions(new String[]{
                         Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -90,11 +96,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return;
             }
         } else {
-            doManager();
+            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
         }
-
-        manager.requestLocationUpdates("gps", 0, 0, listener);
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
     }
+
+
 
 
 
@@ -103,14 +110,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         switch (requestCode) {
             case 10:
                 if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    doManager();
+                    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
                 return;
         }
     }
 
-    private void doManager() {
-        manager.requestLocationUpdates("gps", 5000, 0, listener);
-    }
+
 
 
 
