@@ -12,6 +12,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +23,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
@@ -30,10 +35,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Button buttonToReminderList;
     private Button buttonToReminder;
 
-    private AsyncTaskNotification asynctask;
-
     private LocationManager manager;
     private LocationListener listener;
+
+    private FirebaseAuth firebaseAuth;
+
+    private DatabaseReference databaseReference;
+
+    private GpsHelper gpshelper;
+
 
     private float[] results;
 
@@ -46,26 +56,46 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        gpshelper = new GpsHelper();
+
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToReminder = (Button) findViewById(R.id.buttonToReminder);
 
-        asynctask = new AsyncTaskNotification();
-        asynctask.execute();
-
         buttonToReminderList.setOnClickListener(this);
         buttonToReminder.setOnClickListener(this);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if(firebaseAuth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
+
 
         manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         results = new float[3];
 
+        gpshelper.start();
+        gpshelper.getData();
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Toast.makeText(MapActivity.this, "latitude = " + location.getLatitude(), Toast.LENGTH_SHORT).show();
-                Location.distanceBetween(location.getLatitude(), location.getLongitude(), 52.352705099999994, 4.9486612, results);
-                Toast.makeText(MapActivity.this, results[0] + " " + results[1] + " " + results[2] + " meters", Toast.LENGTH_SHORT).show();
+                Double latitude = location.getLatitude();
+                Double longitude = location.getLongitude();
+                String result = gpshelper.checkGps(latitude, longitude);
+
+
+                if (!(result.equals("no result"))) {
+                    Toast.makeText(MapActivity.this, result, Toast.LENGTH_SHORT).show();
+                }
+                Log.d("testem", result);
             }
+
+
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -101,10 +131,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
     }
 
-
-
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -116,20 +142,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
-
-
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
