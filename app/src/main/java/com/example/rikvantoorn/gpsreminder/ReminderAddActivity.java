@@ -83,6 +83,9 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         coordinateslatitude = extras.getDouble("coordinateslatitude");
         coordinateslongitude = extras.getDouble("coordinateslongitude");
 
+        Intent intent = new Intent(this,GpsService.class);
+        stopService(intent);
+
 
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);

@@ -54,6 +54,7 @@ public class GpsHelper {
             Double rLongitude = latlng.longitude;
             Integer distance = reminder.getdistance();
 
+
             Location.distanceBetween(latitude, longitude, rLatitude, rLongitude, results);
             int truedistance = Math.round(results[0]);
 
@@ -63,6 +64,8 @@ public class GpsHelper {
         }
         return result;
     }
+
+
 
     public void getData() {
 

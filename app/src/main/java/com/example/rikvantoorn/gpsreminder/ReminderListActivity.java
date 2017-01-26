@@ -150,6 +150,9 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
                 startActivity(reminderIntent);
             }
         });
+
+        Intent intent = new Intent(this,GpsService.class);
+        startService(intent);
     }
 
     @Override
