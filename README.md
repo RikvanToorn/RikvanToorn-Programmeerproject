@@ -1,46 +1,9 @@
 # RikvanToorn-Programmeerproject
-Applicatie voor het Programmeerproject van Rik van Toorn,
- 11279184
+Applicatie voor het Programmeerproject van Rik van Toorn, 11279184
 
 
-## Het probleem
-Iedereen heeft wel bepaalde dingen die hij of zij moet onthouden.
- Dit kunnen spullen zijn die men nodig heeft of zaken die nog geregeld moeten worden. Dit kunnen dingen zijn zoals de verwarming uitzetten wanneer je je woning verlaat of je oplader weer meenemen die je de vorige keer bij een vriend hebt laten liggen. Het belangrijkste
- bij dit soort dingen is dat je er aan denkt op het goede moment of beter gezegd op de goede plek.
+## GpsReminder
+GpsReminder geeft gebruikers de mogelijkheid een herinnering te koppelen aan bepaalde locaties. De gebruiker kan een account registreren en daarmee in te loggen om zo een persoonlijke lijst van Reminders bij te houden. De gebruiker kan een herinnering toevoegen en daarmee bepaalde informatie meegeven zoals de titel van de herinnering, de locatie en de afstand tot de locatie wanneer de herinnering (notificatie) moet worden verstuurd. Herinneringen kunnen natuurlijk worden verwijderd en aangepast naar de wens van de gebruiker. de gebruiker kan de herinneringen terugzien in een lijst of op een map.
 
-Voor dit probleem wil ik dus een applicatie ontwikkelen
- die gebruikers aan bepaalde zaken herinnert wanneer deze op een bepaalde plek zijn. Op basis van de GPS locatie van de mobiele telefoon kan de applicatie zien waar de gebruiker zich bevindt en op basis hiervan de gebruiker een melding sturen die deze er aan
- herinnert iets niet te vergeten. Voordat de applicatie weet wanneer een melding te versturen moet de gebruiker eerst een herinnering toevoegen aan een lijst met herinneringen. In deze herinnering kan de gebruiker minimaal een titel, beschrijving en locatie
- invoeren. Ook moet de gebruiker instellen in welke radius van de locatie de melding wordt weergegeven (minimale afstand tot de locatie om een melding te triggeren). Verder kan de gebruiker aangeven hoe belangrijk het is, tot welke datum en tijd de herinnering
- moet blijven staan en of de melding pas moet verschijnen wanneer de gebruiker een bepaalde locatie verlaat om zo niet alsnog iets te vergeten als de gebruiker lang op een bepaalde locatie verblijft en daarna weer vertrekt.
-
-## Applicatie onderdelen
-De applicatie zal vooral bestaan uit 4 verschillende schermen.
- Een hoofdactiviteit waar de gebruiker zijn lijst met herinneringen kan zien. Een activiteit met een formulier waar de gebruiker een nieuwe herinnering kan toevoegen of een bestaande kan aanpassen. En een activiteit waar een kaart op wordt weergegeven zodat
- een gebruiker daar ook een herinnering op kan zien door middel van een landmark mits dichtbij genoeg om deze te kunnen zien staan. Als laatste is er een scherm waar de herinnering wordt weergegeven. De gebruiker komt vanzelf op dit scherm wanneer de app is
- geopend en op de locatie van een herinnering komt of wanneer de gebruiker op een melding klikt als deze binnenkomt wanneer de applicatie op de achtergrond draait.
- 
-![](doc/lijst.png)
-![](doc/kaart.png)
-![](doc/add.png)
-
-## Benodigde API's en tools
-Ik zal hoogstwaarschijnlijk gebruik maken van de Firebase
- tool om zo gebruikers de mogelijkheid te geven zich te registreren en in te loggen in de applicatie. Ook zal er dan gebruik worden gemaakt van de database feature om per gebruiker de herinneringen op te slaan. Daarnaast zal ik gebruik maken van een map API
- en dan waarschijnlijk die van Google gezien deze het meest wordt gebruikt en daarom ook een uitgebreide documentatie beschikbaar heeft.
-
-Het grootste probleem waar ik verwacht tegenaan te lopen
- is het draaien van de applicatie op de achtergrond. Hier heb ik nog nooit mee gewerkt en weet ook niet hoe ik dit moet implementeren. Op internet staan gelukkig genoeg tutorials en documentatie om dit probleem op te lossen en succesvol uit te voeren. Ook zal
- het lastig worden de meldingen op het goede moment te laten verschijnen omdat de gps locatie moet worden gekoppeld aan de Google maps API door gebruik van de latitude en longitude.
-
-## In andere applicaties
-Op een niveau lijkt de applicatie op de navigatie feature
- van google maps zelf. Deze geeft bijvoorbeeld een melding wanneer de gebruiker een afslag moet nemen op de snelweg. Dit is vanzelfsprekend ook op de GPS locatie gebaseerd van de gebruiker net zoals de bedoeling is in deze applicatie. Wanneer de applicatie
- op de achtergrond draait krijgt de gebruiker een push notificatie met een korte beschrijving van de actie die moet worden ondernomen. Als er vervolgens op deze notificatie wordt geklikt opent de applicatie de map waarop de route en meer informatie wordt weergegeven.
- Iets vergelijkbaars wil ik ook implementeren in de applicatie wanneer de gebruiker in de buurt komt van een locatie waar een herinnering aan vast zit.
-
-## Minimum viable product
- + Registreren en inloggen
- + Herinnering toevoegen,aanpassen en verwijderen
- + Melding ontvangen op de juiste locatie
- + Herinneringen op de map kunnen zien
+##copyright statement
+zie LICENSE.md
