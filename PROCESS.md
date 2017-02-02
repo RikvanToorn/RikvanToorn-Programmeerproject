@@ -12,7 +12,6 @@
 
 ###dag 3
 -Design van mijn proposal document verbeterd, uitgebreid en netter ontworpen.
--Laatste keer idee lichtelijk aangepast.
 -MVP vastgesteld.
 
 ###dag 4
@@ -36,7 +35,8 @@
 - Formulier op de AddReminderActivity werkend gekregen en het succesvol opgeslagen in firedatabase
 
 ###dag 8 (jarig/werk - bijna niks gedaan)
--Begin gemaakt aan het ophalen van de gegevens om het in een listview te zetten.
+- Begin gemaakt aan het ophalen van de gegevens om het in een listview te zetten.
+- Ik loop tegen problemen aan omdat ik uit 1 object verschillende soort variabelen moet ophalen
 
 ###dag 9
 - Hele dag bezig geweest met juist ophalen van de gegevens uit de firedatabase
@@ -49,12 +49,12 @@ assistentie kwam er ook niet uit.
 
 ##week 3
 ###dag 11
--Bezig geweest met het ophalen van de GPS locatie van de telefoon. veel problemen mee gehad maar uiteindelijk met de hulp van youtube videos een recent goed voorbeeld gevonden.
--Gelijk toegevoegd dat de gebruiker om toestemming word gevraagd voor de GPS locatie en dat een instellingen scherm automatisch in beeld komt als 'Locatie' uistaat.
--Overwegen om toch niet de optie toe te voegen dat gebruikers een melding krijgen wanneer ze een locatie verlaten.
+- Bezig geweest met het ophalen van de GPS locatie van de telefoon. veel problemen mee gehad maar uiteindelijk met de hulp van youtube videos een recent goed voorbeeld gevonden.
+- Gelijk toegevoegd dat de gebruiker om toestemming word gevraagd voor de GPS locatie en dat een instellingen scherm automatisch in beeld komt als 'Locatie' uistaat. Ook dit ging vrij moeilijk door een 'onterechte' foutmelding die niet wilde verdwijnen
+- Overwegen om toch niet de optie toe te voegen dat gebruikers een melding krijgen wanneer ze een locatie verlaten omdat ik niet weet hoe je dit moet implementeren
 
 ###dag 12
-- volgende stap is opgehaalde locatie vergelijken met locatie uit de database. Lang mee bezig geweest. kreeg het niet voor elkaar een goede afstand in meters te verkrijgen.
+- volgende stap is opgehaalde locatie vergelijken met locatie uit de database. Lang mee bezig geweest omdat ik het niet voor elkaar kreeg een goede afstand in meters te verkrijgen. Uiteindelijk blijkt dit toch erg simpel te zijn.
 - Uiteindelijk bij een goede oplossing gekomen die de afstand in meters tussen de huidige locaties en alle locaties van reminders uit de database verkrijgt.
 - Morgen dit vergelijken met de 'afstand tot locatie' van dezelfde reminders uit de database.
 
@@ -70,20 +70,25 @@ assistentie kwam er ook niet uit.
  
 ###dag 15
 - presentatie geven met werkende notificaties op het juiste moment.
-- Vast gekeken naar het voorkomen m=van meerdere notificaties . dit is net als voorhee erg vervelend testen omdat ik genoodzaakt rond te lopen met mijn mobiele telefoon zonder dat ik de foutmeldingen kan bekijken in android studio.
+- Vast gekeken naar het voorkomen m=van meerdere notificaties. dit is net als voorhee erg vervelend testen omdat ik genoodzaakt rond te lopen met mijn mobiele telefoon zonder dat ik de foutmeldingen kan bekijken in android studio.
 
 ##week 4
 ###dag 16
 - Probleem opgelost van de meerdere notificaties door een simpele toevoeging.
-- Toch besloten notificaties wanneer je het gebief verlaat toe te voegen omdat me iets te binnen schoot wat wel zou kunnen werken. dit werkte gelukkig ook.
-- applicatie is zo goed als af. begonnen met het refacteren van de code wat ook nodig is om laatste kleine dingen werkend te kirjgen zoals de informatie van 1 reminder ophalen uit de database inplaats van allemaal.  
-Ik loop tegen het feit aan dat firebase asynchoniseus werkt en daardoor pas na mijn return statement klaar is. dit geeft een leeg reminder object terug waardoor ik er niks mee kan. na een lange tijd nog niet opgelost dus besloten dit de volgende dag aan de assistensten op school te vragen.
+- Toch besloten notificaties wanneer je het gebied verlaat toe te voegen omdat me iets te binnen schoot wat wel zou kunnen werken. dit werkte gelukkig ook.
+- Applicatie is zo goed als af. begonnen met het refacteren van de code wat ook nodig is om laatste kleine dingen werkend te krijgen zoals de informatie van 1 reminder ophalen uit de database inplaats van allemaal.  
+- Ik loop tegen het feit aan dat firebase asynchoniseus werkt en daardoor pas na mijn return statement klaar is. dit geeft een leeg reminder object terug waardoor ik er niks mee kan. na een lange tijd nog niet opgelost dus besloten dit de volgende dag aan de assistensten op school te vragen.
 
 ###dag 17
 - Op school begonnen met mijn eindverslag en het toevoegen/aanvullen van comments in mijn code. wachten op assistenten voor (hopelijk) mijn laatste probleem.
+- Ze kan me helaas niet verder helpen. Ik besluit de handelingen van de firebase database maar gewoon in de activiteit waar het nodig is te laten staan ondanks dat dit de code vrij onoverzichtelijk kan maken.
 
 ###dag 18
+- Snel de mapactivity afgemaakt. dit ging gelukkig zoals verwacht makkelijk door de duidelijke documentatie. Ook voor elkaar gekregen de juiste radius van elke reminder weer te geven op de map.
+- Logout optie toegevoegd.
 
 ###dag 19
+- Witruimte weggehaald, comments toegevoegd, onnodige code zoals logs weggehaald en de code opgeschoond/logischer ingedeeld
 
 ###dag 20
+- Applicatie presenteren
