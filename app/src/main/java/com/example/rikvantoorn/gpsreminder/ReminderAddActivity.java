@@ -20,10 +20,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
@@ -37,22 +35,13 @@ import java.util.Date;
 
 public class ReminderAddActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private FirebaseAuth firebaseAuth;
-
+    // declare all global variables and views
     private DatabaseReference databaseReference;
-
-    private Reminder reminder;
 
     private LatLng latlng;
 
-    private String activity;
     private String date;
     private String location;
-    private String description;
-    private String title;
-
-    private double coordinateslatitude;
-    private double coordinateslongitude;
 
     private int whenwarning;
     private int distance;
@@ -73,25 +62,25 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
 
     private SeekBar seekBarDistance;
 
-    private GoogleApiClient mGoogleApiClient;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_add);
 
+        // get extras from the intent
         Bundle extras = getIntent().getExtras();
-        activity = extras.getString("activity");
+        String activity = extras.getString("activity");
+        String title = extras.getString("title");
+        String description = extras.getString("description");
         date = extras.getString("date");
-        title = extras.getString("title");
-        description = extras.getString("description");
         location = extras.getString("location");
         distance = extras.getInt("distance");
         whenwarning = extras.getInt("whenwarning");
-        coordinateslatitude = extras.getDouble("coordinateslatitude");
-        coordinateslongitude = extras.getDouble("coordinateslongitude");
+        double coordinateslatitude = extras.getDouble("coordinateslatitude");
+        double coordinateslongitude = extras.getDouble("coordinateslongitude");
 
 
+        // set the right views
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
         buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
@@ -101,41 +90,33 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         editTextReminderTitle = (EditText) findViewById(R.id.editTextReminderTitle);
         editTextReminderDescription = (EditText) findViewById(R.id.editTextReminderDescription);
 
-        buttonToReminderList.setOnClickListener(this);
-        buttonToMap.setOnClickListener(this);
-        buttonToLogout.setOnClickListener(this);
-        buttonAddReminderAdd.setOnClickListener(this);
-        buttonAddReminderCancel.setOnClickListener(this);
-
         textViewDistance = (TextView) findViewById(R.id.textViewDistance);
         seekBarDistance = (SeekBar) findViewById(R.id.seekBarDistance);
 
         checkBoxEnteringLocation = (CheckBox) findViewById(R.id.checkBoxEnteringLocation);
         checkBoxLeavingLocation = (CheckBox) findViewById(R.id.checkBoxLeavinglocation);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        // set onclick listeners on buttons
+        buttonToReminderList.setOnClickListener(this);
+        buttonToMap.setOnClickListener(this);
+        buttonToLogout.setOnClickListener(this);
+        buttonAddReminderAdd.setOnClickListener(this);
+        buttonAddReminderCancel.setOnClickListener(this);
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        if(user == null) {
+        // checks if user is logged in
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
 
+        FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
-
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                //.enableAutoManage(this, this)
-                .build();
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
-
-
+        // set views with the right information if it is to edit a existing reminder
         if (activity.equals("ReminderActivity")) {
             editTextReminderTitle.setText(title);
             editTextReminderDescription.setText(description);
@@ -158,6 +139,9 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
             whenwarning = 0;
         }
 
+        ((EditText)autocompleteFragment.getView().findViewById(R.id.place_autocomplete_search_input)).setHint("Location");
+
+        // get title and location from the google places API
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
@@ -171,6 +155,7 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
+        // set listener on seekbar
         seekBarDistance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
@@ -188,6 +173,7 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    // function to add the filled in form to the database with reminders
     private void addReminder() {
         String title = editTextReminderTitle.getText().toString().trim();
         String description = editTextReminderDescription.getText().toString().trim();
@@ -222,7 +208,7 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
             return;
         }
 
-        reminder = new Reminder(title, location, description, date, distance, latlng, whenwarning );
+        Reminder reminder = new Reminder(title, location, description, date, distance, latlng, whenwarning );
 
         DatabaseReference childRef = databaseReference.child("Reminders").child(title);
         childRef.setValue(reminder);
@@ -232,6 +218,7 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
 
 
 
+    // handles the onclick listeners
     @Override
     public void onClick(View view) {
         if(view == buttonToMap) {

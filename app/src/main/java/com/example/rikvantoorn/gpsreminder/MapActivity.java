@@ -38,13 +38,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Button buttonToReminderList;
     private Button buttonToLogout;
 
-    private FirebaseAuth firebaseAuth;
-
-    private DatabaseReference databaseReference;
-    private DatabaseReference childref;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +47,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
         buttonToReminderList.setOnClickListener(this);
         buttonToLogout.setOnClickListener(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
@@ -69,10 +61,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
-        childref = databaseReference.child("Reminders");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Reminders");
 
-        childref.addChildEventListener(new ChildEventListener() {
+
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, Map> mapLatLng= (Map)dataSnapshot.getValue();
@@ -80,47 +72,34 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Map<String, Long> mapLongs= (Map)dataSnapshot.getValue();
 
                 Long distancelong = mapLongs.get("distance");
-                Map<String, Double> coordinatesmap = mapLatLng.get("coordinates");
 
+                Map<String, Double> coordinatesmap = mapLatLng.get("coordinates");
                 Double longitude = coordinatesmap.get("longitude");
                 Double latitude = coordinatesmap.get("latitude");
-
                 LatLng coordinates = new LatLng(latitude, longitude);
+
                 String title = mapStrings.get("title");
 
                 mMap.addMarker(new MarkerOptions().position(coordinates).title(title));
-
                 Circle circle = mMap.addCircle(new CircleOptions()
                         .center(coordinates)
                         .radius(distancelong));
-
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
     }
-
-
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

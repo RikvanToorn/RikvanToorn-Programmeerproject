@@ -23,8 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ReminderActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private FirebaseAuth firebaseAuth;
-
+    // declare all global variables and views
     private DatabaseReference databaseReference;
 
     private Button buttonToReminderList;
@@ -33,14 +32,6 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonReminderDelete;
     private Button buttonToLogout;
 
-    private TextView textViewReminderTitle;
-    private TextView textViewReminderLocatie;
-    private TextView textViewReminderInformation;
-
-    private CheckBox checkBoxEnteringLocation;
-    private CheckBox checkBoxLeavingLocation;
-
-    private String source;
     private String date;
     private String title;
     private String description;
@@ -66,19 +57,23 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         coordinateslongitude = extras.getDouble("coordinateslongitude");
 
 
+        // set the right views
+        TextView textViewReminderTitle = (TextView) findViewById(R.id.textViewReminderTitle);
+        TextView textViewReminderLocatie = (TextView) findViewById(R.id.textViewReminderLocatie);
+        TextView textViewReminderInformation = (TextView) findViewById(R.id.textViewReminderInformation);
 
-        textViewReminderTitle = (TextView) findViewById(R.id.textViewReminderTitle);
-        textViewReminderLocatie = (TextView) findViewById(R.id.textViewReminderLocatie);
-        textViewReminderInformation = (TextView) findViewById(R.id.textViewReminderInformation);
+        buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
+        buttonToMap = (Button) findViewById(R.id.buttonToMap);
+        buttonReminderEdit = (Button) findViewById(R.id.buttonReminderEdit);
+        buttonReminderDelete = (Button) findViewById(R.id.buttonReminderDelete);
+        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
-        checkBoxEnteringLocation = (CheckBox) findViewById(R.id.checkBoxEnteringLocation);
-        checkBoxLeavingLocation = (CheckBox) findViewById(R.id.checkBoxLeavinglocation);
-
+        CheckBox checkBoxEnteringLocation = (CheckBox) findViewById(R.id.checkBoxEnteringLocation);
+        CheckBox checkBoxLeavingLocation = (CheckBox) findViewById(R.id.checkBoxLeavinglocation);
 
         textViewReminderTitle.setText(title);
         textViewReminderLocatie.setText(location + " - " + distance + "M");
         textViewReminderInformation.setText(description);
-
 
         if (whenwarning == 1) {
             checkBoxEnteringLocation.setChecked(true);
@@ -91,24 +86,17 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
             checkBoxLeavingLocation.setChecked(true);
         }
 
-
-        buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
-        buttonToMap = (Button) findViewById(R.id.buttonToMap);
-        buttonReminderEdit = (Button) findViewById(R.id.buttonReminderEdit);
-        buttonReminderDelete = (Button) findViewById(R.id.buttonReminderDelete);
-        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
-
+        // set onclicklisteners
         buttonToReminderList.setOnClickListener(this);
         buttonToMap.setOnClickListener(this);
         buttonReminderEdit.setOnClickListener(this);
         buttonReminderDelete.setOnClickListener(this);
         buttonToLogout.setOnClickListener(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
+        // checks if user is logged in
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        if(user == null) {
+        if(firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
@@ -116,6 +104,7 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
     }
 
+    // handles onclick listeners
     @Override
     public void onClick(View view) {
         if(view == buttonToMap) {

@@ -28,19 +28,13 @@ import java.util.Map;
 
 public class GpsHelper {
 
-    private FirebaseAuth firebaseAuth;
-
-    private DatabaseReference databaseReference;
-    private DatabaseReference childref;
-
+    // declare all global variables
     private Reminder reminder;
-    private Reminder reminderMatch;
-
     final List<Reminder> Reminders = new ArrayList<>();
 
-
+    // returns the distance between the gpslocation and locations from the database
     public Reminder checkGps(Double latitude, Double longitude) {
-        reminderMatch = null;
+        Reminder reminderMatch = null;
         for (Reminder reminder: Reminders) {
 
             float[] results = new float[3];
@@ -59,12 +53,12 @@ public class GpsHelper {
         return reminderMatch;
     }
 
+    // gets all the reminders from the database to check
     public void getData() {
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
-        childref = databaseReference.child("Reminders");
-        childref.addChildEventListener(new ChildEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Reminders");
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, String> mapStrings = (Map) dataSnapshot.getValue();

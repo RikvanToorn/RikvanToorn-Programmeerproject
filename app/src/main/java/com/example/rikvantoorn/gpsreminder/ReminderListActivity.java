@@ -41,17 +41,12 @@ import java.util.Map;
 
 public class ReminderListActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private FirebaseAuth firebaseAuth;
-
-    private DatabaseReference databaseReference;
-
+    // declare all global variables and views
     private Button buttonAddReminder;
     private Button buttonToMap;
     private Button buttonToLogout;
 
     private Reminder reminder;
-
-    private LocationManager manager;
 
     final List<Reminder> Reminders = new ArrayList<>();
 
@@ -60,33 +55,33 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_list);
 
+        // set the right views
         buttonAddReminder = (Button) findViewById(R.id.buttonAddReminder);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
         buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
+        // attach onclick listeners
         buttonAddReminder.setOnClickListener(this);
         buttonToMap.setOnClickListener(this);
         buttonToLogout.setOnClickListener(this);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
+        // Checks if user is logged in
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
-        DatabaseReference childref = databaseReference.child("Reminders");
-
-
-
+        // set custom adapter for listview
         final ListView addedReminders = (ListView) findViewById(R.id.listViewReminders);
-
         final ArtistAdapter adapter = new ArtistAdapter(getApplicationContext(), R.layout.reminder_row, Reminders);
         addedReminders.setAdapter(adapter);
 
-        childref.addChildEventListener(new ChildEventListener() {
+
+        // get all reminders from database
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Reminders");
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, String> mapStrings = (Map)dataSnapshot.getValue();
@@ -111,38 +106,29 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
                 LatLng coordinates = new LatLng(latitude, longitude);
 
                 reminder = new Reminder(title, location, description, date, distance, coordinates, whenwarning);
-
                 Reminders.add(reminder);
 
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
-
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
+        // set onclick listener to each listview item
         addedReminders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 String date = Reminders.get(position).getdate();
                 String title = Reminders.get(position).gettitle();
@@ -168,24 +154,18 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-
-        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        // aks user to grant permission if not yet given
+        LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
 
                 requestPermissions(new String[]{
                         android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION,
                         android.Manifest.permission.INTERNET
                 }, 10);
-
                 return;
             }
         }
-
-
-
-
         Intent intent = new Intent(this,GpsService.class);
         startService(intent);
     }
@@ -199,6 +179,7 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    // handles the onclick listeners
     @Override
     public void onClick(View view) {
         if(view == buttonToMap) {
@@ -214,6 +195,7 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    // the custom adapter to populate the textviews
     public class ArtistAdapter extends ArrayAdapter {
 
         private List<Reminder> ReminderList;
@@ -224,11 +206,9 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             ReminderList = objects;
             this.resource = resource;
             inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-
             if(convertView == null){
                 convertView = inflater.inflate(resource, null);
             }
@@ -237,17 +217,13 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             TextView locationTextViewRow;
             TextView titleTextViewRow;
 
-
             dateTextViewRow = (TextView) convertView.findViewById(R.id.dateTextViewRow);
             locationTextViewRow = (TextView) convertView.findViewById(R.id.locationTextViewRow);
             titleTextViewRow = (TextView) convertView.findViewById(R.id.titleTextViewRow);
 
-
             dateTextViewRow.setText(ReminderList.get(position).getdate());
             locationTextViewRow.setText(ReminderList.get(position).getlocation() + " - " + ReminderList.get(position).getdistance() + "m");
             titleTextViewRow.setText(ReminderList.get(position).gettitle());
-
-
             return convertView;
         }
     }

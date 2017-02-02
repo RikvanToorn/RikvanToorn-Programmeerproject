@@ -14,14 +14,12 @@ public class LogoutActivity extends AppCompatActivity implements View.OnClickLis
     private Button buttonToMap;
     private Button buttonLogout;
 
-    private FirebaseAuth firebaseAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
@@ -46,6 +44,8 @@ public class LogoutActivity extends AppCompatActivity implements View.OnClickLis
             startActivity(new Intent(this, ReminderListActivity.class));
         }
         if(view == buttonLogout) {
+            Intent intent = new Intent(this,GpsService.class);
+            stopService(intent);
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(this, LoginActivity.class));
         }

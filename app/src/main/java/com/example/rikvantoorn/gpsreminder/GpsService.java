@@ -27,25 +27,18 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.google.android.gms.maps.model.LatLng;
 
-/**
- * Created by Rik van Toorn on 26-1-2017.
- */
 
 public class GpsService extends Service{
 
+    // declare all global variables
     private GpsHelper gpshelper;
-    private LocationManager manager;
-    private LocationListener listener;
-
-    private String lastResult;
-
-    private NotificationManager notificationManager;
 
     boolean isNotificActive = false;
 
     public Reminder reminder;
     public Reminder reminderHolder;
 
+    public LatLng resultCoordinates;
     public static Double latitude = 52.354528;
     public static Double longitude = 4.955317;
 
@@ -53,11 +46,12 @@ public class GpsService extends Service{
     public String resultLocation;
     public String resultDescription;
     public String resultDate;
+    private String lastResult;
 
     public Integer resultWhenWarning;
     public Integer resultDistance;
-    public LatLng resultCoordinates;
 
+    // creates another thread so the app keeps working
     final class GpsThreadClass implements Runnable{
         int service_id;
         GpsThreadClass(int service_id) {
@@ -66,22 +60,19 @@ public class GpsService extends Service{
 
         @Override
         public void run() {
-
-
         }
     }
 
+    // creates the service
     @Override
     public void onCreate() {
-        
         gpshelper = new GpsHelper();
         gpshelper.getData();
         lastResult = "no result";
-        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-
-
-        listener = new LocationListener() {
+        // handles the action whenever the Gps location changes
+        LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        LocationListener listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 latitude = location.getLatitude();
@@ -90,14 +81,13 @@ public class GpsService extends Service{
 
                 if (reminder != null) {
 
-
-                resultTitle = reminder.gettitle();
-                resultWhenWarning = reminder.getwhenwarning();
-                resultLocation= reminder.getlocation();
-                resultDescription = reminder.getdescription();
-                resultDate = reminder.getdate();
-                resultDistance = reminder.getdistance();
-                resultCoordinates = reminder.getcoordinates();
+                    resultTitle = reminder.gettitle();
+                    resultWhenWarning = reminder.getwhenwarning();
+                    resultLocation= reminder.getlocation();
+                    resultDescription = reminder.getdescription();
+                    resultDate = reminder.getdate();
+                    resultDistance = reminder.getdistance();
+                    resultCoordinates = reminder.getcoordinates();
 
 
                     if (!(resultTitle.equals("no result")) && !(resultTitle.equals(lastResult)) && resultWhenWarning.equals(1)) {
@@ -124,17 +114,14 @@ public class GpsService extends Service{
                 }
             }
 
-
-
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-
             }
-
             @Override
             public void onProviderEnabled(String provider) {
             }
 
+            // when the gps ont eh phone is disablled brings up the settingsscreen to enable it
             @Override
             public void onProviderDisabled(String provider) {
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -143,9 +130,10 @@ public class GpsService extends Service{
             }
         };
 
+        // checks if the user has given permission and triggers the function to handle it
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat
+                    .checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
         } else {
@@ -157,11 +145,8 @@ public class GpsService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Thread thread = new Thread(new GpsThreadClass(startId));
         thread.start();
-
-
         return START_STICKY;
     }
 
@@ -174,6 +159,7 @@ public class GpsService extends Service{
         return null;
     }
 
+    // builds and handles the intent of the notification send to the phone
     public void showNotification(String title, String location, String description, String date, Integer distance, Integer whenwarning, LatLng coordinates) {
 
         NotificationCompat.Builder notificBuilder = new
@@ -208,12 +194,10 @@ public class GpsService extends Service{
 
         notificBuilder.setContentIntent(pendingIntent);
 
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(10, notificBuilder.build());
 
         isNotificActive = true;
-
     }
-
 }
