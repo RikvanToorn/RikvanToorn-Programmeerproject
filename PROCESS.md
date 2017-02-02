@@ -3,12 +3,12 @@
 ##week 1
 
 ###dag 1
--Ik had al een idee voor een applicatie dus nadat dat wat beter te hebben uitgedacht heb ik het in het proposal document gezet.
+- Ik had al een idee voor een applicatie dus nadat dat wat beter te hebben uitgedacht heb ik het in het proposal document gezet.
 
 ###dag 2
--Ik heb het idee beter in woorden duidelijk gemaakt.
--Onderzoek gedaan naar wat er mogelijk is binnen mijn skillset.
--API's gezocht en documentatie snel doorgelezen.
+- Ik heb het idee beter in woorden duidelijk gemaakt.
+- Onderzoek gedaan naar wat er mogelijk is binnen mijn skillset.
+- API's gezocht en documentatie snel doorgelezen.
 
 ###dag 3
 -Design van mijn proposal document verbeterd, uitgebreid en netter ontworpen.
@@ -16,36 +16,36 @@
 -MVP vastgesteld.
 
 ###dag 4
--Begonnen met alle schermen te ontwerpen en de teksten te bedenken.
--Navigatie volledig werkend gemaakt.
--Verbonden met Google Maps API.
+- Begonnen met alle schermen te ontwerpen en de teksten te bedenken.
+- Navigatie volledig werkend gemaakt.
+- Verbonden met Google Maps API.
 
 ###dag 5
--Presentatie gegeven over prototype
--Schermen afgemaakt.
+- Presentatie gegeven over prototype
+- Schermen afgemaakt.
 
 ##week 2
 
 ###dag 6
--Google Places API werkend gekregen.
--Schermen aangepast en gefinetuned.
--Inloggen en registreren met firebase geimplementeerd.
+- Google Places API werkend gekregen.
+- Schermen aangepast en gefinetuned.
+- Inloggen en registreren met firebase geimplementeerd.
 
 ###dag 7
--Besloten 'urgency' voorlopig nog weg te laten omdat het weinig toegevoegde waarde heeft.
--Formulier op de AddReminderActivity werkend gekregen en het succesvol opgeslagen in firedatabase
+- Besloten 'urgency' voorlopig nog weg te laten omdat het weinig toegevoegde waarde heeft.
+- Formulier op de AddReminderActivity werkend gekregen en het succesvol opgeslagen in firedatabase
 
 ###dag 8 (jarig/werk - bijna niks gedaan)
 -Begin gemaakt aan het ophalen van de gegevens om het in een listview te zetten.
 
 ###dag 9
--Hele dag bezig geweest met juist ophalen van de gegevens uit de firedatabase
--Omdat het verschillende soorten variabelen zijn en zelfs een LatLng (longtitude / latitude) object had ik hier erg veel moeite mee. Uiteindelijk is het me gelukt maar wel met een omweg (denk ik).
+- Hele dag bezig geweest met juist ophalen van de gegevens uit de firedatabase
+- Omdat het verschillende soorten variabelen zijn en zelfs een LatLng (longtitude / latitude) object had ik hier erg veel moeite mee. Uiteindelijk is het me gelukt maar wel met een omweg (denk ik).
 assistentie kwam er ook niet uit.
 
 ###dag 10
--Presentatie gegeven.
--Onderzocht hoe ik google maps API ga gebruiken om op het juiste moment de meldingen te versturen.
+- Presentatie gegeven.
+- Onderzocht hoe ik google maps API ga gebruiken om op het juiste moment de meldingen te versturen.
 
 ##week 3
 ###dag 11
@@ -54,9 +54,9 @@ assistentie kwam er ook niet uit.
 -Overwegen om toch niet de optie toe te voegen dat gebruikers een melding krijgen wanneer ze een locatie verlaten.
 
 ###dag 12
--volgende stap is opgehaalde locatie vergelijken met locatie uit de database. Lang mee bezig geweest. kreeg het niet voor elkaar een goede afstand in meters te verkrijgen.
--Uiteindelijk bij een goede oplossing gekomen die de afstand in meters tussen de huidige locaties en alle locaties van reminders uit de database verkrijgt.
--Morgen dit vergelijken met de 'afstand tot locatie' van dezelfde reminders uit de database.
+- volgende stap is opgehaalde locatie vergelijken met locatie uit de database. Lang mee bezig geweest. kreeg het niet voor elkaar een goede afstand in meters te verkrijgen.
+- Uiteindelijk bij een goede oplossing gekomen die de afstand in meters tussen de huidige locaties en alle locaties van reminders uit de database verkrijgt.
+- Morgen dit vergelijken met de 'afstand tot locatie' van dezelfde reminders uit de database.
 
 ##dag 13
 - getest met Toasts om te kijken of ik op de goede manier de afstand vergelijk. Dit lijkt te kloppen als ik de de afstand op google maps bekijk.
