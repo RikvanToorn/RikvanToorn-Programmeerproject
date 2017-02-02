@@ -1,3 +1,10 @@
+/**
+ * Reminder class
+ * Rik van Toorn, 11279184
+ *
+ * This class is a blueprint for the Reminder object which will be stored and read from the fire database.
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import com.google.android.gms.maps.model.LatLng;

@@ -1,8 +1,21 @@
+/**
+ * ReminderAddActivity
+ * Rik van Toorn, 11279184
+ *
+ * This is the activity which is shown when de user logges in or starts the app after closing it.
+ * from here the user can add and see existing reminders to edit or delete
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,9 +47,11 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
 
     private Button buttonAddReminder;
     private Button buttonToMap;
-    private Button buttonToReminder;
+    private Button buttonToLogout;
 
     private Reminder reminder;
+
+    private LocationManager manager;
 
     final List<Reminder> Reminders = new ArrayList<>();
 
@@ -47,11 +62,11 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
 
         buttonAddReminder = (Button) findViewById(R.id.buttonAddReminder);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
-        buttonToReminder = (Button) findViewById(R.id.buttonToReminder);
+        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
         buttonAddReminder.setOnClickListener(this);
         buttonToMap.setOnClickListener(this);
-        buttonToReminder.setOnClickListener(this);
+        buttonToLogout.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -98,6 +113,8 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
                 reminder = new Reminder(title, location, description, date, distance, coordinates, whenwarning);
 
                 Reminders.add(reminder);
+
+                adapter.notifyDataSetChanged();
 
             }
 
@@ -151,8 +168,35 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+
+        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+
+                requestPermissions(new String[]{
+                        android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                        android.Manifest.permission.INTERNET
+                }, 10);
+
+                return;
+            }
+        }
+
+
+
+
         Intent intent = new Intent(this,GpsService.class);
         startService(intent);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    return;
+        }
     }
 
     @Override
@@ -165,8 +209,8 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             reminderAddIntent.putExtra("activity", "ReminderListActivity");
             startActivity(reminderAddIntent);
         }
-        if(view == buttonToReminder) {
-            startActivity(new Intent(this, ReminderActivity.class));
+        if(view == buttonToLogout) {
+            startActivity(new Intent(this, LogoutActivity.class));
         }
     }
 
@@ -192,19 +236,16 @@ public class ReminderListActivity extends AppCompatActivity implements View.OnCl
             TextView dateTextViewRow;
             TextView locationTextViewRow;
             TextView titleTextViewRow;
-            TextView descriptionTextViewRow;
 
 
             dateTextViewRow = (TextView) convertView.findViewById(R.id.dateTextViewRow);
             locationTextViewRow = (TextView) convertView.findViewById(R.id.locationTextViewRow);
             titleTextViewRow = (TextView) convertView.findViewById(R.id.titleTextViewRow);
-            descriptionTextViewRow = (TextView) convertView.findViewById(R.id.descriptionTextViewRow);
 
 
             dateTextViewRow.setText(ReminderList.get(position).getdate());
             locationTextViewRow.setText(ReminderList.get(position).getlocation() + " - " + ReminderList.get(position).getdistance() + "m");
             titleTextViewRow.setText(ReminderList.get(position).gettitle());
-            descriptionTextViewRow.setText(ReminderList.get(position).getdescription());
 
 
             return convertView;

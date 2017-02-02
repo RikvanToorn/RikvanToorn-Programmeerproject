@@ -41,6 +41,14 @@
             android:layout_height="match_parent"
             android:hint="@string/user_registration_password_hint"/>
 
+        <EditText
+            android:id="@+id/editTextPasswordRegistrationConfirmation"
+            android:inputType="textPassword"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Enter your password again"/>
+
         <Button
             android:id="@+id/buttonRegistration"
             android:layout_width="match_parent"

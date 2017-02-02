@@ -33,12 +33,11 @@
                 android:layout_weight="0.33"
                 android:text="@string/menu_button_map"/>
             <Button
-                android:id="@+id/buttonToReminder"
-                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:id="@+id/buttonToLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
-                android:text="@string/menu_button_reminder" />
+                android:text="@string/button_to_logout_text" />
 
         </LinearLayout>
 
@@ -150,12 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
                 android:text="@string/reminder_delete_button_text"/>
-            <Button
-                android:id="@+id/buttonReminderComplete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.33"
-                android:text="@string/reminder_complete_button_text"/>
+
             <Button
                 android:id="@+id/buttonReminderEdit"
                 android:layout_width="0dp"

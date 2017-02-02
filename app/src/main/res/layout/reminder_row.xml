@@ -3,49 +3,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp">
+    android:padding="5dp">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/dateTextViewRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:orientation="horizontal">
+        android:textSize="12sp"
+        android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/dateTextViewRow"
-            android:layout_width="0dp"
-            android:layout_weight="0.4"
-            android:layout_height="wrap_content"
-            android:text="17 jan. 2017 18:56:47"
-            android:textSize="11sp"
-            android:textStyle="italic"/>
-
-            <TextView
-                android:id="@+id/locationTextViewRow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:text="Marshalllaan 292"/>
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/titleTextViewRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:padding="5dp"
-        android:text="Melk halen"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/descriptionTextViewRow"
+        android:id="@+id/locationTextViewRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:text="Niet vergeten melk te halen bij de supermarkt"/>
+        android:textSize="14sp" />
 
 </LinearLayout>

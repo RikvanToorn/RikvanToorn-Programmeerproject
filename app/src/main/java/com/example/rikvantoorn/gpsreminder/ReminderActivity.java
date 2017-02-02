@@ -1,3 +1,11 @@
+/**
+ * ReminderActivity
+ * Rik van Toorn, 11279184
+ *
+ * This activity shows the information for the reminder the user clicked on trough notification or listview from the ReminderListactivity.
+ * from here the user can choose to edit the reminder
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.content.Intent;
@@ -23,6 +31,7 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonToMap;
     private Button buttonReminderEdit;
     private Button buttonReminderDelete;
+    private Button buttonToLogout;
 
     private TextView textViewReminderTitle;
     private TextView textViewReminderLocatie;
@@ -31,7 +40,7 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
     private CheckBox checkBoxEnteringLocation;
     private CheckBox checkBoxLeavingLocation;
 
-
+    private String source;
     private String date;
     private String title;
     private String description;
@@ -45,10 +54,10 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
-
         Bundle extras = getIntent().getExtras();
-        date = extras.getString("date");
+
         title = extras.getString("title");
+        date = extras.getString("date");
         description = extras.getString("description");
         location = extras.getString("location");
         distance = extras.getInt("distance");
@@ -87,11 +96,13 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
         buttonReminderEdit = (Button) findViewById(R.id.buttonReminderEdit);
         buttonReminderDelete = (Button) findViewById(R.id.buttonReminderDelete);
+        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
         buttonToReminderList.setOnClickListener(this);
         buttonToMap.setOnClickListener(this);
         buttonReminderEdit.setOnClickListener(this);
         buttonReminderDelete.setOnClickListener(this);
+        buttonToLogout.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -112,6 +123,9 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         }
         if(view == buttonToReminderList) {
             startActivity(new Intent(this, ReminderListActivity.class));
+        }
+        if(view == buttonToLogout) {
+            startActivity(new Intent(this, LogoutActivity.class));
         }
         if(view == buttonReminderDelete) {
             DatabaseReference childRef = databaseReference.child("Reminders").child(title);

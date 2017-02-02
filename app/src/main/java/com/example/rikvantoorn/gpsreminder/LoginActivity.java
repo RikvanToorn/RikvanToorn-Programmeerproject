@@ -1,3 +1,10 @@
+/**
+ * LoginActivity
+ * Rik van Toorn, 11279184
+ *
+ * This activity handles the login functionaliy. This is done bij FireBase.
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.app.ProgressDialog;

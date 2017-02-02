@@ -1,3 +1,10 @@
+/**
+ * RegisterActivity
+ * Rik van Toorn, 11279184
+ *
+ * This activity handles the register functionaliy. This is done bij FireBase.
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.app.ProgressDialog;
@@ -23,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonRegistration;
     private EditText editTextEmailRegistration;
     private EditText editTextPasswordRegistration;
+    private EditText editTextPasswordRegistrationConfirmation;
     private TextView textViewToLogin;
 
     // declare the progressdialog
@@ -50,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         // asign all the views
         editTextEmailRegistration = (EditText) findViewById(R.id.editTextEmailRegistration);
         editTextPasswordRegistration = (EditText) findViewById(R.id.editTextPasswordRegistration);
+        editTextPasswordRegistrationConfirmation = (EditText) findViewById(R.id.editTextPasswordRegistrationConfirmation);
         buttonRegistration = (Button) findViewById(R.id.buttonRegistration);
         textViewToLogin = (TextView) findViewById(R.id.textViewToLogin);
 
@@ -73,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void userRegistration() {
         String email = editTextEmailRegistration.getText().toString().trim();
         String password = editTextPasswordRegistration.getText().toString().trim();
+        String passwordConfirmation = editTextPasswordRegistrationConfirmation.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
             //email is empty
@@ -83,6 +93,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(TextUtils.isEmpty(password)) {
             //password is empty
             Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(TextUtils.isEmpty(passwordConfirmation)) {
+            //password is empty
+            Toast.makeText(this, "Please enter your password again", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!password.equals(passwordConfirmation)) {
+            Toast.makeText(this, "Your passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
 

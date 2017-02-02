@@ -31,11 +31,11 @@
                 android:layout_weight="0.33"
                 android:text="@string/menu_button_map"/>
             <Button
-                android:id="@+id/buttonToReminder"
+                android:id="@+id/buttonToLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
-                android:text="@string/menu_button_reminder" />
+                android:text="@string/button_to_logout_text" />
 
         </LinearLayout>
 
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:max="5000"/>
+            android:max="1000"/>
 
         <TextView
             android:id="@+id/textViewDistance"

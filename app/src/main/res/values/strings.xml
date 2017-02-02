@@ -29,4 +29,7 @@
     <string name="add_reminder_leaving_location_text">Leaving location</string>
     <string name="add_reminder_notification_text">Notification when:</string>
     <string name="title_activity_map">Map</string>
+    <string name="button_sure_logout">Yes</string>
+    <string name="Logout_screen_text">Are you sure you want to Logout?</string>
+    <string name="button_to_logout_text">Logout</string>
 </resources>

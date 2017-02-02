@@ -32,11 +32,11 @@
                 android:layout_weight="0.33"
                 android:text="@string/menu_button_map"/>
             <Button
-                android:id="@+id/buttonToReminder"
+                android:id="@+id/buttonToLogout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
-                android:text="@string/menu_button_reminder"/>
+                android:text="@string/button_to_logout_text"/>
 
         </LinearLayout>
 

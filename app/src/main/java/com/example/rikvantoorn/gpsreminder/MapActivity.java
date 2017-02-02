@@ -1,3 +1,10 @@
+/**
+ * MapActivity
+ * Rik van Toorn, 11279184
+ *
+ * In the MapActivity the user can check where he is and see nearby reminders.
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.content.Intent;
@@ -10,20 +17,31 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
 
     private Button buttonToReminderList;
-    private Button buttonToReminder;
+    private Button buttonToLogout;
 
     private FirebaseAuth firebaseAuth;
 
+    private DatabaseReference databaseReference;
+    private DatabaseReference childref;
 
 
 
@@ -38,10 +56,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
-        buttonToReminder = (Button) findViewById(R.id.buttonToReminder);
+        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
 
         buttonToReminderList.setOnClickListener(this);
-        buttonToReminder.setOnClickListener(this);
+        buttonToLogout.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -51,55 +69,76 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference(user.getUid());
+        childref = databaseReference.child("Reminders");
 
+        childref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, Map> mapLatLng= (Map)dataSnapshot.getValue();
+                Map<String, String> mapStrings = (Map)dataSnapshot.getValue();
+                Map<String, Long> mapLongs= (Map)dataSnapshot.getValue();
 
+                Long distancelong = mapLongs.get("distance");
+                Map<String, Double> coordinatesmap = mapLatLng.get("coordinates");
 
+                Double longitude = coordinatesmap.get("longitude");
+                Double latitude = coordinatesmap.get("latitude");
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//
-//
-//                requestPermissions(new String[]{
-//                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
-//                        Manifest.permission.INTERNET
-//                }, 10);
-//
-//                return;
-//            }
-//        } else {
-//            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
-//        }
-//        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
+                LatLng coordinates = new LatLng(latitude, longitude);
+                String title = mapStrings.get("title");
+
+                mMap.addMarker(new MarkerOptions().position(coordinates).title(title));
+
+                Circle circle = mMap.addCircle(new CircleOptions()
+                        .center(coordinates)
+                        .radius(distancelong));
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode) {
-//            case 10:
-//                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-//                    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, listener);
-//                return;
-//        }
-//    }
+
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(52.354679, 4.955758);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Science Park"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng userPosition = new LatLng(GpsService.latitude  , GpsService.longitude);
+        mMap.addMarker(new MarkerOptions().position(userPosition).title("YOU"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(userPosition));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userPosition,15));
     }
 
     @Override
     public void onClick(View view) {
-        if(view == buttonToReminder) {
-            startActivity(new Intent(this, ReminderActivity.class));
-        }
         if(view == buttonToReminderList) {
             startActivity(new Intent(this, ReminderListActivity.class));
+        }
+        if(view == buttonToLogout) {
+            startActivity(new Intent(this, LogoutActivity.class));
         }
     }
 }

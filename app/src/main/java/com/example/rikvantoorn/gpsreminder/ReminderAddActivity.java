@@ -1,3 +1,10 @@
+/**
+ * ReminderAddActivity
+ * Rik van Toorn, 11279184
+ *
+ * This activity handles adding a reminder to the database or deleting/edititng a existing one. the user can fill in different fields.
+ */
+
 package com.example.rikvantoorn.gpsreminder;
 
 import android.content.Intent;
@@ -52,8 +59,9 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
 
     private Button buttonToReminderList;
     private Button buttonToMap;
-    private Button buttonToReminder;
+    private Button buttonToLogout;
     private Button buttonAddReminderAdd;
+    private Button buttonAddReminderCancel;
 
     private TextView textViewDistance;
 
@@ -83,22 +91,21 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         coordinateslatitude = extras.getDouble("coordinateslatitude");
         coordinateslongitude = extras.getDouble("coordinateslongitude");
 
-        Intent intent = new Intent(this,GpsService.class);
-        stopService(intent);
-
 
         buttonToReminderList = (Button) findViewById(R.id.buttonToReminderList);
         buttonToMap = (Button) findViewById(R.id.buttonToMap);
-        buttonToReminder = (Button) findViewById(R.id.buttonToReminder);
+        buttonToLogout = (Button) findViewById(R.id.buttonToLogout);
         buttonAddReminderAdd = (Button) findViewById(R.id.buttonAddReminderAdd);
+        buttonAddReminderCancel = (Button) findViewById(R.id.buttonAddReminderCancel);
 
         editTextReminderTitle = (EditText) findViewById(R.id.editTextReminderTitle);
         editTextReminderDescription = (EditText) findViewById(R.id.editTextReminderDescription);
 
         buttonToReminderList.setOnClickListener(this);
         buttonToMap.setOnClickListener(this);
-        buttonToReminder.setOnClickListener(this);
+        buttonToLogout.setOnClickListener(this);
         buttonAddReminderAdd.setOnClickListener(this);
+        buttonAddReminderCancel.setOnClickListener(this);
 
         textViewDistance = (TextView) findViewById(R.id.textViewDistance);
         seekBarDistance = (SeekBar) findViewById(R.id.seekBarDistance);
@@ -148,6 +155,7 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
                 checkBoxEnteringLocation.setChecked(true);
                 checkBoxLeavingLocation.setChecked(true);
             }
+            whenwarning = 0;
         }
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -232,11 +240,14 @@ public class ReminderAddActivity extends AppCompatActivity implements View.OnCli
         if(view == buttonToReminderList) {
             startActivity(new Intent(this, ReminderListActivity.class));
         }
-        if(view == buttonToReminder) {
-            startActivity(new Intent(this, ReminderActivity.class));
+        if(view == buttonToLogout) {
+            startActivity(new Intent(this, LogoutActivity.class));
         }
         if(view == buttonAddReminderAdd) {
             addReminder();
+        }
+        if(view == buttonAddReminderCancel) {
+            startActivity(new Intent(this, ReminderListActivity.class));
         }
     }
 }
