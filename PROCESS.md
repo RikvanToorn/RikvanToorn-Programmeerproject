@@ -40,8 +40,7 @@
 
 ###dag 9
 - Hele dag bezig geweest met juist ophalen van de gegevens uit de firedatabase
-- Omdat het verschillende soorten variabelen zijn en zelfs een LatLng (longtitude / latitude) object had ik hier erg veel moeite mee. Uiteindelijk is het me gelukt maar wel met een omweg (denk ik).
-assistentie kwam er ook niet uit.
+- Omdat het verschillende soorten variabelen zijn en zelfs een LatLng (longtitude / latitude) object had ik hier erg veel moeite mee. Uiteindelijk is het me gelukt maar wel met een omweg (denk ik). Assistentie kwam er ook niet uit.
 
 ###dag 10
 - Presentatie gegeven.
@@ -59,28 +58,28 @@ assistentie kwam er ook niet uit.
 - Morgen dit vergelijken met de 'afstand tot locatie' van dezelfde reminders uit de database.
 
 ##dag 13
-- getest met Toasts om te kijken of ik op de goede manier de afstand vergelijk. Dit lijkt te kloppen als ik de de afstand op google maps bekijk.
+- Getest met Toasts om te kijken of ik op de goede manier de afstand vergelijk. Dit lijkt te kloppen als ik de de afstand op google maps bekijk.
 - volgende stap is dit op de achtergrond te laten draaien op alle activiteiten. dit gaat helaas niet zomaar. Ik kan hem wel bij elke activiteit opnieuw starten. ik besluit dit te doen en daarom dus notificatie bij gebied verlaten helemaal weg te laten.
 - gezocht naar een manier om dit ook te laten draaien wanneer de app is afgesloten. ik kom hierbij op het concept van een 'service' dit blijkt ook gewoon te werken wanneer de app is afgesloten volgens de documentatie. hier ga ik morgen direct aan beginnen.
 
 ##dag 14
-- Hele dag bezig geweest met het werkend krijgen van de service en alle processen die hier op moeten draaien. Hoewel ik hier de hele dag mee bezig ben geweest gaat dit verbazend makkelijk af. ik overweeg nu weer op de melding bij de locatie verlaten toch weer toe te voegen.
+- Hele dag bezig geweest met het werkend krijgen van de service en alle processen die hier op moeten draaien. Hoewel ik hier de hele dag mee bezig ben geweest gaat dit verbazend makkelijk af. Ik overweeg nu weer op de melding bij de locatie verlaten toch weer toe te voegen.
 - Ik krijg nu wel constant notifcaties wanneer ik binnen het gebied rondloopt. het goede nieuws is wel dat dit ook werkt wanneer ik de applicatie volledig afsluit. ik besluit dit later op te lossen.
 - Ook vandaag nog voor elkaar gekregen dat wanneer je op de notificatie klikt je naar de juiste activity gaat. Nu moet hierin nog alle juiste informatie uit de database komen te staan.
  
 ###dag 15
-- presentatie geven met werkende notificaties op het juiste moment.
+- Presentatie geven met werkende notificaties op het juiste moment.
 - Vast gekeken naar het voorkomen m=van meerdere notificaties. dit is net als voorhee erg vervelend testen omdat ik genoodzaakt rond te lopen met mijn mobiele telefoon zonder dat ik de foutmeldingen kan bekijken in android studio.
 
 ##week 4
 ###dag 16
 - Probleem opgelost van de meerdere notificaties door een simpele toevoeging.
-- Toch besloten notificaties wanneer je het gebied verlaat toe te voegen omdat me iets te binnen schoot wat wel zou kunnen werken. dit werkte gelukkig ook.
+- Toch besloten notificaties wanneer je het gebied verlaat toe te voegen omdat me iets te binnen schoot wat wel zou kunnen werken. Dit werkte gelukkig ook.
 - Applicatie is zo goed als af. begonnen met het refacteren van de code wat ook nodig is om laatste kleine dingen werkend te krijgen zoals de informatie van 1 reminder ophalen uit de database inplaats van allemaal.  
-- Ik loop tegen het feit aan dat firebase asynchoniseus werkt en daardoor pas na mijn return statement klaar is. dit geeft een leeg reminder object terug waardoor ik er niks mee kan. na een lange tijd nog niet opgelost dus besloten dit de volgende dag aan de assistensten op school te vragen.
+- Ik loop tegen het feit aan dat firebase asynchoniseus werkt en daardoor pas na mijn return statement klaar is. dit geeft een leeg reminder object terug waardoor ik er niks mee kan. Na een lange tijd nog niet opgelost dus besloten dit de volgende dag aan de assistensten op school te vragen.
 
 ###dag 17
-- Op school begonnen met mijn eindverslag en het toevoegen/aanvullen van comments in mijn code. wachten op assistenten voor (hopelijk) mijn laatste probleem.
+- Op school begonnen met mijn eindverslag en het toevoegen/aanvullen van comments in mijn code. Wachten op assistenten voor (hopelijk) mijn laatste probleem.
 - Ze kan me helaas niet verder helpen. Ik besluit de handelingen van de firebase database maar gewoon in de activiteit waar het nodig is te laten staan ondanks dat dit de code vrij onoverzichtelijk kan maken.
 
 ###dag 18
