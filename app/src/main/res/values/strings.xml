@@ -5,7 +5,7 @@
     <string name="user_login_password_hint">Enter your password</string>
     <string name="login_button_text">Login</string>
     <string name="login_no_account_text">Don\'t have an acccount? Register here</string>
-    <string name="user_registration_title">User registation</string>
+    <string name="user_registration_title">User registration</string>
     <string name="user_registration_email_hint">Enter your email</string>
     <string name="user_registration_password_hint">Enter your password</string>
     <string name="registration_button_text">Register</string>
